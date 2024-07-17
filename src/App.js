@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HeroSection from "./components/HeroSection";
+import ReferralFormModal from "./components/ReferralFormModal";
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer/Footer'
 
-function App() {
+const App = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        {/* <HeroSection onReferNow={handleOpen} />
+        <ReferralFormModal open={open} onClose={handleClose} /> */}
+      </div>
+      <div>
+      <BrowserRouter>
+        <Navbar/>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+          </Routes>
+      </BrowserRouter>
+      <Footer/>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
